@@ -29,7 +29,6 @@ public class PostTest {
 			PaymentOrderCode order = Post.at("https://ws.pagseguro.uol.com.br/v2/checkout?email=leandro.storoli@gmail.com&token=C918CC2E0BC144CB8C6F8AFD44D8E1DC")
 				.contentType("application/xml; charset=ISO-8859-1")
 				.encoding("ISO-8859-1")
-				.accept("application/xml")
 				.param(payment)
 				.post()
 				.resource(PaymentOrderCode.class);
