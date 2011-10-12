@@ -1,6 +1,6 @@
 package br.com.tagfy.pagseguro.api.conf;
 
-public interface PaymentConfig {
+public interface Config {
 
 	String getEmail();
 

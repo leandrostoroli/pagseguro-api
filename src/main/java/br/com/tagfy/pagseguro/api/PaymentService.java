@@ -2,25 +2,18 @@ package br.com.tagfy.pagseguro.api;
 
 import org.apache.http.HttpStatus;
 
-import br.com.tagfy.pagseguro.api.conf.PaymentConfig;
-import br.com.tagfy.pagseguro.api.model.Payment;
 import br.com.tagfy.pagseguro.api.model.PaymentError;
 import br.com.tagfy.pagseguro.api.model.PaymentOrder;
 import br.com.tagfy.pagseguro.api.model.PaymentOrderCode;
+import br.com.tagfy.pagseguro.api.request.PaymentRequest;
+import br.com.tagfy.pagseguro.api.request.RequestBuilder;
 import br.com.tagfy.pagseguro.api.utils.Post;
 
 public class PaymentService {
 	
-	private Post post;
-	
-	public PaymentService(PaymentConfig paymentConfig) {
-		post = Post.at(paymentConfig.getUrl()+"?email="+paymentConfig.getEmail()+"&token="+paymentConfig.getToken())
-			.contentType("application/xml; charset="+paymentConfig.getEncoding())
-			.encoding(paymentConfig.getEncoding());
-	}
-	
-	public PaymentOrder pay(Payment payment) throws Exception {
-		post.param(payment);
+	public static PaymentOrder pay(PaymentRequest paymentRequest) throws Exception {
+		RequestBuilder requestBuilder = paymentRequest.getRequest();
+		Post post = requestBuilder.buildPost();
 		post.post();
 		
 		PaymentOrder order = new PaymentOrder();

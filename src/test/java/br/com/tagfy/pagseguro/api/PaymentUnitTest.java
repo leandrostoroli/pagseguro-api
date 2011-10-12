@@ -11,16 +11,17 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.tagfy.pagseguro.api.conf.ParametersPaymentConfig;
+import br.com.tagfy.pagseguro.api.conf.Config;
 import br.com.tagfy.pagseguro.api.model.Payment;
 import br.com.tagfy.pagseguro.api.model.PaymentOrder;
 import br.com.tagfy.pagseguro.api.model.Shipping;
+import br.com.tagfy.pagseguro.api.request.PaymentRequest;
 
-public class PaymentTest {
+public class PaymentUnitTest {
 	
 	private Payment payment;
 	
-	private PaymentService service;
+	private PaymentRequest request;
 	
 	@Before
 	public void setup() {
@@ -34,16 +35,30 @@ public class PaymentTest {
 			.item("1", "Descrição 1", 1, new BigDecimal("150.00"), 1L, new BigDecimal("10.00"))
 			.build();
 		
-		service = new PaymentService(new ParametersPaymentConfig("leandro.storoli@gmail.com", 
-				"C918CC2E0BC144CB8C6F8AFD44D8E1DC", 
-				"ISO-8859-1", 
-				"https://ws.pagseguro.uol.com.br/v2/checkout"));
+		request = new PaymentRequest(payment, new Config() {
+			public String getUrl() {
+				return "https://ws.pagseguro.uol.com.br/v2/checkout";
+			}
+			
+			public String getToken() {
+				return "C918CC2E0BC144CB8C6F8AFD44D8E1DC";
+			}
+			
+			public String getEncoding() {
+				return "ISO-8859-1";
+			}
+			
+			public String getEmail() {
+				return "leandro.storoli@gmail.com";
+			}
+		});
+		
 	}
 	
 	@Test
 	public void shouldPay() {
 		try {
-			PaymentOrder orderCode = service.pay(payment);
+			PaymentOrder orderCode = PaymentService.pay(request);
 			
 			assertNotNull(orderCode);
 			assertNotNull(orderCode.getOrderCode());
@@ -62,7 +77,7 @@ public class PaymentTest {
 		payment.setCurrency("");
 		
 		try {
-			PaymentOrder orderCode = service.pay(payment);
+			PaymentOrder orderCode = PaymentService.pay(request);
 			
 			assertNotNull(orderCode);
 			assertNotNull(orderCode.getError());
