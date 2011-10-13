@@ -9,11 +9,6 @@ import java.util.TimeZone;
 
 public class DateParserUTC {
 
-    /**
-     * @param s
-     * @return
-     * @throws ParseException
-     */
     public static Date parse(String s) throws ParseException {
         Calendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
         calendar.clear();
@@ -35,6 +30,8 @@ public class DateParserUTC {
         calendar.set(Calendar.SECOND, calWithoutTZ.get(Calendar.SECOND));
         calendar.set(Calendar.MILLISECOND, calWithoutTZ.get(Calendar.MILLISECOND));
 
+//        System.out.println(df.format(calendar.getTime()));
+        
         int tzHour = Integer.parseInt(timeZone.substring(1, 3));
         int tzMin = Integer.parseInt(timeZone.substring(4, 6));
         boolean plus = timeZone.substring(0, 1).equals("+");

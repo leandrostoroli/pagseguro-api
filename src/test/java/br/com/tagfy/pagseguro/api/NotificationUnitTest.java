@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +13,7 @@ import br.com.tagfy.pagseguro.api.model.Item;
 import br.com.tagfy.pagseguro.api.model.Transaction;
 import br.com.tagfy.pagseguro.api.request.NotificationRequest;
 import br.com.tagfy.pagseguro.api.request.RequestBuilder;
+import br.com.tagfy.pagseguro.api.utils.DateParserUTC;
 import br.com.tagfy.pagseguro.api.utils.Get;
 import br.com.tagfy.pagseguro.api.utils.XmlUtils;
 
@@ -49,7 +49,7 @@ public class NotificationUnitTest {
 			
 			assertNotNull(transaction);
 			assertNotNull(transaction.getDate());
-			assertEquals("10/02/2011 16:13:41", new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(transaction.getDate()));
+			assertEquals(DateParserUTC.parse("2011-02-10T16:13:41.000-03:00"), transaction.getDate());
 			assertEquals("9E884542-81B3-4419-9A75-BCC6FB495EF1", transaction.getCode());
 			assertEquals("REF1234", transaction.getReference());
 			assertEquals(new Integer(1), transaction.getTransactionType());
