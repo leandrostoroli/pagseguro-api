@@ -20,7 +20,7 @@ Abaixo um exemplo de como usar a api para processamento de um pagamento
 					}
 
 					public String getToken() {
-						return "C918CC2E0BC144CB8C6F8AFD44D8E1DC";
+						return "COLOQUE SEU TOKEN AQUI";
 					}
 
 					public String getEncoding() {
@@ -28,7 +28,7 @@ Abaixo um exemplo de como usar a api para processamento de um pagamento
 					}
 
 					public String getEmail() {
-						return "leandro.storoli@gmail.com";
+						return "COLOQUE SEU EMAIL AQUI";
 					}
 		});			
 		
