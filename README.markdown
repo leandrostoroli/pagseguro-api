@@ -96,7 +96,7 @@ Caso ocorra algum erro no processamento do pagamento o serviço retorna as mensa
 		transaction.getReference(); // E assim por diante...
 		
 		
-## Serviço de Consulta (Histórico) ##		
+## Serviço de Consulta (Histórico) ##
 
 		TransactionSearchRequest request = new TransactionSearchRequest(initialDate, finalDate, 1, 10, new Config() {
 					public String getUrl() {
