@@ -37,6 +37,7 @@ public class Transaction {
 	public static final Integer STATUS_REFUNDED = 6;
 	public static final Integer STATUS_CANCELLED = 7;
 
+	@XmlJavaTypeAdapter(value=DateUTCAdapter.class, type=Date.class)
 	private Date lastEventDate;
 	
 	@XmlJavaTypeAdapter(value=DateUTCAdapter.class, type=Date.class)
