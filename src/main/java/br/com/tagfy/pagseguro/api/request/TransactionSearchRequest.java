@@ -26,13 +26,13 @@ public class TransactionSearchRequest {
 		calendar.add(Calendar.DAY_OF_MONTH, -1);
 		initialDate = calendar.getTime();
 		page = 1;
-		maxPageResults = 100;
+		maxPageResults = 10;
 		this.config = config;
 	}
 	
 	public TransactionSearchRequest(Date initialDate, Date finalDate, Config config) {
 		page = 1;
-		maxPageResults = 100;
+		maxPageResults = 10;
 		this.config = config;
 		this.initialDate = initialDate;
 		this.finalDate = finalDate;

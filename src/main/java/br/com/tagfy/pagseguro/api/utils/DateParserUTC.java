@@ -12,7 +12,7 @@ public class DateParserUTC {
     public static Date parse(String s) throws ParseException {
         Calendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
         calendar.clear();
-
+        
         // date format: YYYY-MM-DDThh:mm:ss.sTZD
         String dateWithoutTZ = s.substring(0, 23);
         String timeZone = s.substring(23, 29);

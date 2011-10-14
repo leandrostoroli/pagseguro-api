@@ -1,11 +1,9 @@
 package br.com.tagfy.pagseguro.api;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.http.HttpStatus;
 
 import br.com.tagfy.pagseguro.api.model.Transaction;
+import br.com.tagfy.pagseguro.api.model.TransactionSearchResult;
 import br.com.tagfy.pagseguro.api.request.RequestBuilder;
 import br.com.tagfy.pagseguro.api.request.TransactionDetailRequest;
 import br.com.tagfy.pagseguro.api.request.TransactionSearchRequest;
@@ -25,27 +23,25 @@ public class TransactionService {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
-	public static List<Transaction> search(TransactionSearchRequest transactionSearchRequest) throws Exception {
+	public static TransactionSearchResult search(TransactionSearchRequest transactionSearchRequest) throws Exception {
 		RequestBuilder requestBuilder = transactionSearchRequest.getRequest();
 		Get get = requestBuilder.buildGet();
 		get.get();
 		
 		if (get.getCode() == HttpStatus.SC_OK) {
-			return get.resource(new ArrayList<Transaction>().getClass());
+			return get.resource(TransactionSearchResult.class);
 		} else {
 			throw new Exception(get.getCode()+" - "+get.getReason());
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
-	public static List<Transaction> abandoned(TransactionSearchRequest transactionSearchRequest) throws Exception {
+	public static TransactionSearchResult abandoned(TransactionSearchRequest transactionSearchRequest) throws Exception {
 		RequestBuilder requestBuilder = transactionSearchRequest.getRequest();
 		Get get = requestBuilder.buildGet();
 		get.get();
 		
 		if (get.getCode() == HttpStatus.SC_OK) {
-			return get.resource(new ArrayList<Transaction>().getClass());
+			return get.resource(TransactionSearchResult.class);
 		} else {
 			throw new Exception(get.getCode()+" - "+get.getReason());
 		}
