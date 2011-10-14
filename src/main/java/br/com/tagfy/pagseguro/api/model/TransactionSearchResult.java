@@ -28,7 +28,7 @@ public class TransactionSearchResult {
 	@XmlElementWrapper(name="transactions")
     @XmlElement(name="transaction")
 	private List<TransactionSummary> transactions;
-
+	
 	public Date getDate() {
 		return date;
 	}
