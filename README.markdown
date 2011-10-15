@@ -6,7 +6,7 @@ Abaixo um exemplo de como usar a api para processamento de um pagamento
 
 		Payment payment = new PaymentBuilder()
 					.shipping(Shipping.SEDEX, 
-							"Rua do Boqueirão", "185", "AP 93D", "Jd. da Saúde", "04293000", 
+							"Rua do Comprador", "000", "Compl.", "Bairro", "04293000", 
 						"São Paulo", "SP",  "BRA", BigDecimal.ZERO)
 					.sender("João da Silva", "joao@gmail.com", "11", "99999999")
 					.currency("BRL")
