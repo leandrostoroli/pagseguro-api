@@ -14,7 +14,7 @@ Abaixo um exemplo de como usar a api para processamento de um pagamento
 					.item("1", "Descrição 1", 1, new BigDecimal("150.00"), 1L, new BigDecimal("10.00"))
 					.build();
 					
-		PaymentRequest request = new PaymentRequest(payment, new Config() {
+		PaymentRequest request = new PaymentRequest(payment, new PaymentConfig() {
 					public String getUrl() {
 						return "https://ws.pagseguro.uol.com.br/v2/checkout";
 					}
@@ -29,6 +29,10 @@ Abaixo um exemplo de como usar a api para processamento de um pagamento
 
 					public String getEmail() {
 						return "COLOQUE SEU EMAIL AQUI";
+					}
+					
+					public String getPaymentUrl(String code) {
+						return "https://pagseguro.uol.com.br/v2/checkout/payment.html?code="+code;
 					}
 		});			
 		
