@@ -1,15 +1,15 @@
 package br.com.tagfy.pagseguro.api.request;
 
-import br.com.tagfy.pagseguro.api.conf.Config;
+import br.com.tagfy.pagseguro.api.conf.PaymentConfig;
 import br.com.tagfy.pagseguro.api.model.Payment;
 
 public class PaymentRequest {
 	
 	private Payment payment;
 	
-	private Config config;
+	private PaymentConfig config;
 	
-	public PaymentRequest(Payment payment, Config config) {
+	public PaymentRequest(Payment payment, PaymentConfig config) {
 		this.config = config;
 		this.payment = payment;
 	}
@@ -21,6 +21,10 @@ public class PaymentRequest {
 			.contentType(contentType)
 			.encoding(config.getEncoding())
 			.param(payment);
+	}
+
+	public PaymentConfig getConfig() {
+		return config;
 	}
 
 }

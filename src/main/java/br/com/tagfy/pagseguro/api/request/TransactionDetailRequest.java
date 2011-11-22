@@ -19,5 +19,9 @@ public class TransactionDetailRequest {
 		return RequestBuilder.at(uri)
 			.encoding(config.getEncoding());
 	}
+
+	public Config getConfig() {
+		return config;
+	}
 	
 }

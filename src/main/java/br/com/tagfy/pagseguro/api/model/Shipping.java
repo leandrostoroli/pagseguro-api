@@ -2,6 +2,7 @@ package br.com.tagfy.pagseguro.api.model;
 
 import java.math.BigDecimal;
 
+
 public class Shipping {
 	
 	public static final int PAC = 1;

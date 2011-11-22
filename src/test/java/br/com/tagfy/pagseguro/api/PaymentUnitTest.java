@@ -11,7 +11,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.tagfy.pagseguro.api.conf.Config;
+import br.com.tagfy.pagseguro.api.conf.PaymentConfig;
 import br.com.tagfy.pagseguro.api.model.Payment;
 import br.com.tagfy.pagseguro.api.model.PaymentOrder;
 import br.com.tagfy.pagseguro.api.model.Shipping;
@@ -35,7 +35,7 @@ public class PaymentUnitTest {
 			.item("1", "Descrição 1", 1, new BigDecimal("150.00"), 1L, new BigDecimal("10.00"))
 			.build();
 		
-		request = new PaymentRequest(payment, new Config() {
+		request = new PaymentRequest(payment, new PaymentConfig() {
 			public String getUrl() {
 				return "https://ws.pagseguro.uol.com.br/v2/checkout";
 			}
@@ -51,6 +51,10 @@ public class PaymentUnitTest {
 			public String getEmail() {
 				return "leandro.storoli@gmail.com";
 			}
+			
+			public String getPaymentUrl(String code) {
+				return "https://pagseguro.uol.com.br/v2/checkout/payment.html?code="+code;
+			}
 		});
 		
 	}
@@ -65,6 +69,8 @@ public class PaymentUnitTest {
 			assertNotNull(orderCode.getOrderCode().getDate());
 			assertFalse(orderCode.getOrderCode().getCode().isEmpty());
 			assertFalse(orderCode.getOrderCode().getDate().isEmpty());
+			assertEquals("https://pagseguro.uol.com.br/v2/checkout/payment.html?code="+orderCode.getOrderCode().getCode(), 
+					request.getConfig().getPaymentUrl(orderCode.getOrderCode().getCode()));
 			System.out.println(orderCode.getOrderCode().getCode());
 		} catch (Exception e) {
 			e.printStackTrace();

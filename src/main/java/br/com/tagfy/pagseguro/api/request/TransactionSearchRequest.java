@@ -59,4 +59,8 @@ public class TransactionSearchRequest {
 			.encoding(config.getEncoding());
 	}
 
+	public Config getConfig() {
+		return config;
+	}
+
 }

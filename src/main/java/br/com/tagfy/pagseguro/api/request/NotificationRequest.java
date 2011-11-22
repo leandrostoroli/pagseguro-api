@@ -19,4 +19,8 @@ public class NotificationRequest {
 			.encoding(config.getEncoding());
 	}
 
+	public Config getConfig() {
+		return config;
+	}
+
 }
