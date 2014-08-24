@@ -1,6 +1,7 @@
 package br.com.tagfy.pagseguro.api;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import br.com.tagfy.pagseguro.api.model.Address;
 import br.com.tagfy.pagseguro.api.model.Item;
@@ -27,6 +28,11 @@ public class PaymentBuilder {
 		payment.getItems().add(new Item(id, description, quantity, amount, weight, shippingCost));
 		return this;
 	}
+	
+	public PaymentBuilder itens(List<Item> itens) {
+		payment.getItems().addAll(itens);
+		return this;
+	}	
 	
 	public PaymentBuilder shipping(Shipping shipping) {
 		payment.setShipping(shipping);
